@@ -53,8 +53,8 @@ namespace K4APointCloudVFX
 
         private void OnDestroy()
         {
-            _positionBuffer.Dispose();
-            _tmpPositionMap = null;
+//            _positionBuffer.Dispose();
+//            _tmpPositionMap = null;
         }
     }
 }
