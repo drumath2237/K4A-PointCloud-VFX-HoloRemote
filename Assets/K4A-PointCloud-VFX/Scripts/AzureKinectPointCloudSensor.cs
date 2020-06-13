@@ -68,5 +68,14 @@ namespace K4APointCloudVFX
         {
             _kinect.StopCameras();
         }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                for (int i = 0; i < 100; i++)
+                {
+                    Debug.Log(_vertices[i]);
+                }
+        }
     }
 }
