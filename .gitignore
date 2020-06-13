@@ -63,3 +63,7 @@ crashlytics-build.properties
 
 
 Assets/NuGet/
+
+Assets/Packages/
+
+Assets/Plugins/
