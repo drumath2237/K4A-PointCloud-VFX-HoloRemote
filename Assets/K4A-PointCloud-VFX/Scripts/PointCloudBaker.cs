@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace K4APointCloudVFX
     public class PointCloudBaker : MonoBehaviour
     {
         [SerializeField] private RenderTexture _positionMap=default;
-        [SerializeField] private ComputeShader _vertexBaker;
+        [SerializeField] private ComputeShader _vertexBaker=default;
 
         private AzureKinectPointCloudSensor _sensor;
 
@@ -27,19 +28,28 @@ namespace K4APointCloudVFX
 
             var vertexCount = _sensor.Count;
             _positionBuffer = new ComputeBuffer(vertexCount * 3, sizeof(float));
-            Graphics.CopyTexture(_positionMap, _tmpPositionMap);
+            _tmpPositionMap = new RenderTexture(_positionMap) {enableRandomWrite = true};
         }
 
         private void Update()
         {
-            if (_positionBuffer == null) return;
+            if (_positionBuffer == null)
+            {
+                _positionBuffer = new ComputeBuffer(_sensor.Count*3, sizeof(float));
+            }
             
             var mapWidth = _positionMap.width;
             var mapHeight = _positionMap.height;
             var vCount = _sensor.Count;
 
-            float[] bufferArray = _sensor.Vertices.Select(v => new float[] {v.x, v.y, v.z}).Cast<float>().ToArray();
-            _positionBuffer.SetData(bufferArray);
+            List<float> bufferList = new List<float>();
+            foreach (var vertex in _sensor.Vertices)
+            {
+                bufferList.Add(vertex.x);
+                bufferList.Add(vertex.y);
+                bufferList.Add(vertex.z);
+            }
+            _positionBuffer.SetData(bufferList.ToArray());
             
             _vertexBaker.SetInt(_vertexCountID, vCount);
             _vertexBaker.SetMatrix(_transformID, gameObject.transform.localToWorldMatrix);
@@ -53,8 +63,8 @@ namespace K4APointCloudVFX
 
         private void OnDestroy()
         {
-//            _positionBuffer.Dispose();
-//            _tmpPositionMap = null;
+            _positionBuffer.Release();
+            _tmpPositionMap.Release();
         }
     }
 }
