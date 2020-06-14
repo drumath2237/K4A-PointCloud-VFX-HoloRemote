@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Value: 0
   exposure:
     m_OverrideState: 1
-    m_Value: 4.16
+    m_Value: 9
   multiplier:
     m_OverrideState: 0
     m_Value: 1
@@ -203,7 +203,7 @@ MonoBehaviour:
     showEyeDropper: 1
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 40
+    m_Value: 250
     min: 1
   enableVolumetricFog:
     m_OverrideState: 1
