@@ -600,11 +600,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: TemplateHD
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: D:\kaitoFolder\programs\K4A-PointCloud-VFX-HoloRemote\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: drumath2237
+  metroCertificateIssuer: drumath2237
+  metroCertificateNotAfter: 80214e835a68d701
   metroApplicationDescription: Template_HD
   wsaImages: {}
   metroTileShortName: 
